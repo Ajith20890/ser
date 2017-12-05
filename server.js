@@ -165,7 +165,7 @@ wss.on('connection',  function (ws){
 				ws.send(JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], message[ rty[0]].uuid, rty[1], 
 									 rty[1]/message[ rty[0]].speed,
 									 ]));
-			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']
+			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Particular Bus Not available!']
 									 ]));}
 		 
 		 //var mybusstop = findbusstop( busorstop, data);
