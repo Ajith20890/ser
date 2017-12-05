@@ -157,15 +157,15 @@ wss.on('connection',  function (ws){
 			console.log( 'busdistance: ', busdistance( locs_buspath[0], 21, data));
 		 var qwe = findbusstop( busorstop, data);
 		 console.log( 'findbusstop: ', qwe);
-		 var rty = findbus( dcnt, locs_buspath[ qwe[1]], buses[ qwe[1]], qwe[0]);
+		 var rty = findbus( dcnt, qwe[3], locs_buspath[ qwe[1]], buses[ qwe[1]], qwe[0]);
 		 // console.log( 'findbus: ', findbus( locs_buspath[0], '77', 2));'
 		 console.log( 'findbus: ', rty);
 			// ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']]));
-		 	if( rty[1] != 98 && rty[1] >0 ){
+		 	if( rty[1] != 98){
 				ws.send(JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], message[ rty[0]].uuid, rty[1], 
 									 rty[1]/message[ rty[0]].speed,
 									 ]));
-			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Particular Bus Not available!']
+			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']
 									 ]));}
 		 
 		 //var mybusstop = findbusstop( busorstop, data);
@@ -237,15 +237,18 @@ function busdistance( Area, curj, loc){
 			dis += near[1];
 		}else dis -= near[1];
 	}
-	return dis;
+	if( dis<0){ return -dis} else{ return dis};
 }
 
-function findbus( dcnt, Area, bustype, curj){
+function findbus( dcnt, desj, Area, bustype, curj){
 	var least = 98;
 	var curdis;
 	var busj = 0;
 	message.forEach( function( i, j){
-		if( i.removed == 0 && i.bustype == bustype && ( busdistance( Area, curj, i.preloc[(dcnt+1)%3]) > busdistance( Area, curj, i.loc)) ){
+		if( i.removed == 0 && 
+		   i.bustype == bustype && 
+		   ( busdistance( Area, curj, i.preloc[(dcnt+1)%3]) > busdistance( Area, curj, i.loc)) && 
+		   ( busdistance( Area, desj, i.loc) > busdistance( Area, curj, i.loc)) ){
 			if( ( curdis = busdistance( Area, curj, i.loc)) < least){
 				least = curdis;
 				busj = j;
@@ -259,6 +262,7 @@ function findbusstop( busorstop, loc){
 	var near;
 	var least = [ 98, 98];
 	var curj = -1;
+	var desj = -1;
 	names_buspath.forEach( function( i, j){
 		i.forEach( function( q, w){
 			if( q == busorstop){
@@ -267,10 +271,11 @@ function findbusstop( busorstop, loc){
 					least[0] = near[0];
 					least[1] = near[1];
 					curj = j;
+					desj = w;
 					//console.log( 'aaa:', near);
 				}
 			}
 		});
 	});
-	return [ least[0], curj, least[1]];
+	return [ least[0], curj, least[1], desj];
 }
