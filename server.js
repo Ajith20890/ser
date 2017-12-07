@@ -230,7 +230,7 @@ function busdistance( Area, curj, loc){
 		}else dis -= near[1];
 	}
 	else{
-		for( var j=curj; j>near[0]; j--){
+		for( var j=near[0]; j>curj; j--){
 			dis += mag( Area[j], Area[j-1]);
 		}
 		if( mag( Area[ near[0]], Area[ near[0] - 1]) < mag( loc, Area[ near[0] - 1])){
