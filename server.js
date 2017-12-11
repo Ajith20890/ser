@@ -101,29 +101,29 @@ wss.on('connection',  function (ws){
 		console.log( data);
 		// if( usertype == 1) ws.send( JSON.stringify(buses));
 		if( usertype == 1){
-		message.forEach( function( i, j){
-			if( i.uuid == data[2]){
-				iid = j;
-				message[iid].removed = 0;
-				message[iid].bustype = data[1];
-			}
-		});
-		
-		if( iid==-1){
-			iid = message.length;
-			var obj = {};
-				obj.uuid = data[2];
-			  // obj.x = 0.0;
-			  // obj.y = 0.0;
-				obj.loc = [ 0.0, 0.0];
-				obj.preloc = [[ 0.0, 0.0],[ 0.0, 0.0],[ 0.0, 0.0]];
-				obj.speed = 0;
-			  obj.removed = 0;
-				obj.bustype = data[1];
-			  message.push( obj);
+			message.forEach( function( i, j){
+				if( i.uuid == data[2]){
+					iid = j;
+					message[iid].removed = 0;
+					message[iid].bustype = data[1];
+				}
+			});
 			
-		}	
-	}
+			if( iid==-1){
+				iid = message.length;
+				var obj = {};
+					obj.uuid = data[2];
+				  // obj.x = 0.0;
+				  // obj.y = 0.0;
+					obj.loc = [ 0.0, 0.0];
+					obj.preloc = [[ 0.0, 0.0],[ 0.0, 0.0],[ 0.0, 0.0]];
+					obj.speed = 0;
+				  obj.removed = 0;
+					obj.bustype = data[1];
+				  message.push( obj);
+				
+			}	
+		}
 		
 	}
 	 else if( usertype == 1){
@@ -156,8 +156,10 @@ wss.on('connection',  function (ws){
 		 // ws.send( JSON.stringify( message));
 			console.log( 'busdistance: ', busdistance( locs_buspath[0], 21, data));
 		 var qwe = findbusstop( busorstop, data);
+		 ////return index,buses index,value of least distance,index of inner bus array
 		 console.log( 'findbusstop: ', qwe);
 		 var rty = findbus( dcnt, qwe[3], locs_buspath[ qwe[1]], buses[ qwe[1]], qwe[0]);
+		 //dcnt=3,co -ordinates,,,,,qwe=index of inner bus array,location array buses index main for loop,buses found index in array ,index of least value
 		 // console.log( 'findbus: ', findbus( locs_buspath[0], '77', 2));'
 		 console.log( 'findbus: ', rty);
 			// ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']]));
@@ -165,7 +167,7 @@ wss.on('connection',  function (ws){
 				ws.send(JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], message[ rty[0]].uuid, rty[1], 
 									 rty[1]/message[ rty[0]].speed,
 									 ]));
-			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Particular Bus Not available!']
+			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus Not available!']
 									 ]));}
 		 
 		 //var mybusstop = findbusstop( busorstop, data);
@@ -241,15 +243,19 @@ function busdistance( Area, curj, loc){
 }
 
 function findbus( dcnt, desj, Area, bustype, curj){
+	 //dcnt=3,qwe=index of inner bus array value index,location array buses index main for loop,buses ,index of least value
 	var least = 98;
 	var curdis;
+	var curdes;
 	var busj = 0;
 	message.forEach( function( i, j){
+		curdis = busdistance( Area, curj, i.loc);
+		curdes = busdistance( Area, desj, i.loc);
 		if( i.removed == 0 && 
 		   i.bustype == bustype && 
-		   ( busdistance( Area, curj, i.preloc[(dcnt+1)%3]) > busdistance( Area, curj, i.loc)) && 
-		   ( busdistance( Area, desj, i.loc) > busdistance( Area, curj, i.loc)) ){
-			if( ( curdis = busdistance( Area, curj, i.loc)) < least){
+		   ( busdistance( Area, curj, i.preloc[(dcnt+1)%3]) > curdis) && 
+		   ( curdes > curdis) ){
+			if( curdis < least){
 				least = curdis;
 				busj = j;
 			}
@@ -267,6 +273,7 @@ function findbusstop( busorstop, loc){
 		i.forEach( function( q, w){
 			if( q == busorstop){
 				near = getnear( locs_buspath[j], loc);
+				//index , least value from location
 				if( near[1] < least[1]){
 					least[0] = near[0];
 					least[1] = near[1];
@@ -278,4 +285,5 @@ function findbusstop( busorstop, loc){
 		});
 	});
 	return [ least[0], curj, least[1], desj];
+	//return index,buses index,value of least distance,index of inner bus array
 }
