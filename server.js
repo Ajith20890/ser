@@ -18,7 +18,7 @@ var message = [];
 
 // var id = -1;
 
-var buses = [ "77", "45D", "210P", "15E", "210E"];
+var buses = [ "77", "45D", "210P", "15E", "210E", "demo123"];
 
 var locs_buspath = [
 	[[12.9601640,77.5771710],[12.9604050,77.5679080],[12.9603320,77.5635760],[12.9603740,77.5591400],[12.9627700,77.5602270],
@@ -50,7 +50,12 @@ var locs_buspath = [
 				 [12.9362400,77.5801900],[12.9324710,77.5802850],[12.9308740,77.5780760],[12.9308430,77.5764020],[12.9258890,77.5772330],
 				 [12.9196980,77.5742280],[12.9173980,77.5729630],[12.9136800,77.5672650],[12.9115400,77.5581920],[12.9115290,77.5559830],
 				 [12.9115040,77.5520140],[12.9051090,77.5433920],[12.9010030,77.5440530],[12.8987110,77.5440260],[12.8973450,77.5467550],
-				 [12.8963710,77.5484260],[12.8962310,77.5526260],[12.8949320,77.5528350]]
+				 [12.8963710,77.5484260],[12.8962310,77.5526260],[12.8949320,77.5528350]],
+				 
+				 [[13.001949,77.556366],[13.001960,77.556356],[13.001949,77.556326],[13.001941,77.556299],[13.001934,77.556277],
+				 [13.001910,77.556267],[13.001895,77.556264],[13.001870,77.556249],[13.001868,77.556227],[13.001829,77.556237],
+				 [13.001803,77.556247],[13.001785,77.556246],[13.001759,77.556245],[13.001750,77.556251],[13.001722,77.556245],
+				 [13.001690,77.556246],[13.001668,77.556241],[13.001641,77.556238],[13.001626,77.556238],[13.001598,77.556234]]
 	
 				];
 
@@ -80,7 +85,9 @@ var names_buspath = [
 				['Kempegowda Bus Station','Maharanis College','K R circle','Corporation','Town Hall','K R Market','Makkalakoota','Mahila Seva Samaja',
 				 'National College','Basavanagudi Police Station','South End Circle','Nanda Talkies','Jayanagar 6th Block','Yediyur','Deepak Nursing Home',
 				 'Hunase Mara','Banashankari','Kadirenahalli Cross','Prarthana school','Gowdana Palya','Chikkallasandra Aralimara','Uttarahalli',
-				 'Police Station Subramanyapura','post office Subramanyapura','KEB Subramanyapura','Yadalamma Nagara','Vasanthapura Temple','Vasanthapura']
+				 'Police Station Subramanyapura','post office Subramanyapura','KEB Subramanyapura','Yadalamma Nagara','Vasanthapura Temple','Vasanthapura'],
+				 
+				 ['a1','b2','c3','d4','e5','f6','g7','h8','i9','j10','k11','l12','m13','n14','o15','p16','q17','r18','s19','t20']
 		
 			];
 
