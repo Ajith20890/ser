@@ -62,13 +62,13 @@ var locs_buspath = [
 [12.955168,77.574047],[12.955176,77.574034],[12.955190,77.574172],[12.955218,77.574162],[12.955239,77.574090],[12.955261,77.573987],[12.955274,77.573996],[12.955308,77.574057],
 [12.955296,77.574019],[12.955300,77.574034],[12.955342,77.574057],[12.955375,77.573938],[12.955416,77.574048],[12.955463,77.574133],[12.955487,77.574127],[12.955587,77.574108]]
 	 */
-	 				[[13.001248,77.556232],[13.001346,77.556219],[13.001624,77.556299],[13.001817,77.556299],
-				[13.001929,77.556320],[13.002057,77.556343],[13.002149,77.556334],[13.002229,77.556369],[13.002327,77.556391],[13.002400,77.556405]]
+	 			[[13.001248,77.556232],[13.001346,77.556219],[13.001624,77.556299],[13.001817,77.556299],
+				[13.001929,77.556320],[13.002057,77.556343],[13.002149,77.556334],[13.002229,77.556369],[13.002327,77.556391],[13.002400,77.556405]] 
 				];
 
 
 var names_buspath = [
-	['K R Market','Rayan Circle','Water Tank Chamarajpet','Sirsi Circle','C R Police Ground','Binnypet','Binny Mill',
+						['K R Market','Rayan Circle','Water Tank Chamarajpet','Sirsi Circle','C R Police Ground','Binnypet','Binny Mill',
 				   'Hunasemara Magadi Road','1st Cross Magadi Road','Magadi Road 5th Cross','Magadi Road 10th Cross',
 				   'Prasanna Theatre','Rajajinagar 6th Block','Bashyam Circle (Rajajinagar)','Old Police station Rajajinagar',
 				   'Rajajinagar ESI Hospital','Basaveshwara College','Navarang Talkies','Rajajinagar 1st Block(Diacon Hospital)',
