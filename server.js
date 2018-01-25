@@ -98,8 +98,9 @@ var names_buspath = [
 /* 				 ['a1','b2','c3','d4','e5','f6','g7','h8','i9','j10','k11','l12','m13','n14','o15','p16','q17','r18','s19','t20','u21','v22','w23',
 				 'x24','y25','z26','27','28','29','30','31','32'] */
 				
+				
 				['Mangaldevi jewellary','manjunath chats','1st house','green figo house','selvan house tamil','Nokia guy','1st swift','coconut guy house','dead end road','nandini milk booth']
-			];
+			]; 
 
 
 wss.on('connection',  function (ws){
