@@ -293,7 +293,7 @@ function findbusstop( busorstop, loc){
 	var curj = -1;
 	var desj = -1;
 	names_buspath.forEach( function( i, j){
-		i.forEach( funct	ion( q, w){
+		i.forEach( function( q, w){
 			if( q == busorstop){
 				near = getnear( locs_buspath[j], loc);
 				//index , least value from location
