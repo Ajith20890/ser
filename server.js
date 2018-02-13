@@ -175,9 +175,9 @@ wss.on('connection', function (ws) {
 			dcnt = (dcnt + 1) % 3;
 			message[iid].preloc[dcnt][0] = data[0];
 			message[iid].preloc[dcnt][1] = data[1];
-			//console.log( '{');
-			//message.forEach( function(i,j){ console.log( '{ iid: ' , j, i, '\n }');});
-			//console.log( '}');
+			console.log( '{');
+			message.forEach( function(i,j){ console.log( '{ iid: ' , j, i, '\n }');});
+			console.log( '}');
 		} else if (usertype == 2) {
 
 			watchID = setInterval(function () {
