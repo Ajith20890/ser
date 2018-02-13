@@ -111,107 +111,147 @@ var names_buspath = [
 				  'staff room 2','staff room 3-s','Lift 1'] */
 			]; 
 
-
-wss.on('connection',  function (ws){
+wss.on('connection', function (ws) {
 	var usertype = 0;
 	var busorstop = "";
-  	console.log('Client connected');
-  	var iid = -1;
+	console.log('Client connected');
+	var iid = -1;
 	var dcnt = -1;
-	
-  ws.on('message', function incoming(data) {
-	data = JSON.parse( data);
-	if( usertype == 0){ 
-		usertype = data[0]; 
-		busorstop = data[1];
-		
-		console.log( data);
-		// if( usertype == 1) ws.send( JSON.stringify(buses));
-		if( usertype == 1){
-			message.forEach( function( i, j){
-				if( i.uuid == data[2]){
-					iid = j;
-					message[iid].removed = 0;
-					message[iid].bustype = data[1];
-				}
-			});
-			
-			if( iid==-1){
-				iid = message.length;
-				var obj = {};
+
+	var watchID;
+
+	ws.on('message', function incoming(data) {
+		data = JSON.parse(data);
+		if (usertype == 0) {
+			usertype = data[0];
+			busorstop = data[1];
+
+			console.log(data);
+			// if( usertype == 1) ws.send( JSON.stringify(buses));
+			if (usertype == 1) {
+				message.forEach(function (i, j) {
+					if (i.uuid == data[2]) {
+						iid = j;
+						message[iid].removed = 0;
+						message[iid].bustype = data[1];
+					}
+				});
+
+				if (iid == -1) {
+					iid = message.length;
+					var obj = {};
 					obj.uuid = data[2];
-				  // obj.x = 0.0;
-				  // obj.y = 0.0;
-					obj.loc = [ 0.0, 0.0];
-					obj.preloc = [[ 0.0, 0.0],[ 0.0, 0.0],[ 0.0, 0.0]];
+					// obj.x = 0.0;
+					// obj.y = 0.0;
+					obj.loc = [0.0, 0.0];
+					obj.preloc = [
+						[0.0, 0.0],
+						[0.0, 0.0],
+						[0.0, 0.0]
+					];
 					obj.speed = 0;
-				  obj.removed = 0;
+					obj.removed = 0;
 					obj.bustype = data[1];
-				  message.push( obj);
-				
-			}	
-		}
-		
-	}
-	 else if( usertype == 1){
-			
-			
-		 	message[ iid].loc[0] = data[0];
-		 	message[ iid].loc[1] = data[1];
-		 	message[ iid].speed = data[2];
-		 	
-		 	//dirtest++;
-		 	//dirtest = dirtest % 3;
-		 	
-		 	//if( dirtest == 2){
-				
-				//message[ iid].preloc[0] = message[ iid].loc[0];
-				//message[ iid].preloc[1] = message[ iid].loc[1];
+					message.push(obj);
+
+				}
+			}
+
+		} else if (usertype == 1) {
+
+
+			message[iid].loc[0] = data[0];
+			message[iid].loc[1] = data[1];
+			message[iid].speed = data[2];
+
+			//dirtest++;
+			//dirtest = dirtest % 3;
+
+			//if( dirtest == 2){
+
+			//message[ iid].preloc[0] = message[ iid].loc[0];
+			//message[ iid].preloc[1] = message[ iid].loc[1];
 			//}
-		 	dcnt = (dcnt+1)%3;
-		 	message[ iid].preloc[ dcnt][0] = data[0];
-		 	message[ iid].preloc[ dcnt][1] = data[1];
-			console.log( '{');
-			message.forEach( function(i,j){ console.log( '{ iid: ' , j, i, '\n }');});
-			console.log( '}');
-	 }
-	 else if( usertype == 2){
-		 console.log( data);
-		 
-		 console.log( 'getnear: ', getnear( locs_buspath[0], data));
-		 
-		 // ws.send( JSON.stringify( message));
-			console.log( 'busdistance: ', busdistance( locs_buspath[0], 21, data));
-		 var qwe = findbusstop( busorstop, data);
-		 ////return index,buses index,value of least distance,index of inner bus array
-		 console.log( 'findbusstop: ', qwe);
-		 var rty = findbus( dcnt, qwe[3], locs_buspath[ qwe[1]], buses[ qwe[1]], qwe[0]);
-		 //dcnt=3,co -ordinates,,,,,qwe=index of inner bus array,location array buses index main for loop,buses found index in array ,index of least value
-		 // console.log( 'findbus: ', findbus( locs_buspath[0], '77', 2));'
-		 console.log( 'findbus: ', rty);
-			// ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']]));
-		 	if( rty[1] != 98){
-				ws.send(JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], message[ rty[0]].uuid, rty[1], 
-									 rty[1]/message[ rty[0]].speed,
-									 ]));
-			}else{ ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus Not available!']
-									 ]));}
-		 
-		 //var mybusstop = findbusstop( busorstop, data);
-		 // console.log( mybusstop);
-		 //var mybusdis = findbus( locs_buspath[ mybusstop[1]], busorstop, mybusstop[0]);
-		// var client = [ buses[ mybusstop[1]], names_buspath[ mybusstop[1]][ mybusstop[0]], message[ mybusdis[0]].uuid, mybusdis[1]];
-		  //ws.send( JSON.stringify( client));
-		// console.log( mybusstop, mybusdis);
-	 }
-  });
-  
-  ws.on('close', function(){
-	  if( usertype == 1) message[iid].removed = 1;
-	  console.log('Client disconnected');
-  });
-  
+			dcnt = (dcnt + 1) % 3;
+			message[iid].preloc[dcnt][0] = data[0];
+			message[iid].preloc[dcnt][1] = data[1];
+			//console.log( '{');
+			//message.forEach( function(i,j){ console.log( '{ iid: ' , j, i, '\n }');});
+			//console.log( '}');
+		} else if (usertype == 2) {
+
+			watchID = setInterval(function () {
+
+				// console.log(data);
+
+				// console.log('getnear: ', getnear(locs_buspath[4], [12.8949320, 77.5528350]));
+
+				// ws.send( JSON.stringify( message));
+				// console.log('busdistance: ', busdistance(locs_buspath[4], 5, [12.8949320, 77.5528350]));
+				// console.log('busdistance: ', busdistance(locs_buspath[4], 20, [12.8949320, 77.5528350]));
+				var qwe = findbusstop(busorstop, data);
+				// console.log('findbusstop: ', qwe);
+				var rty = findbus(dcnt, qwe[3], locs_buspath[qwe[1]], buses[qwe[1]], qwe[0]);
+				// console.log( 'findbus: ', findbus( locs_buspath[0], '77', 2));'
+				// console.log('findbus: ', rty);
+				// ws.send( JSON.stringify( [ buses[ qwe[1]], names_buspath[ qwe[1]][ qwe[0]], qwe[2], ['Bus not found!']]));
+				if (rty[1] != 98) {
+					ws.send(JSON.stringify([
+						buses[qwe[1]],
+						names_buspath[qwe[1]][qwe[0]],
+						qwe[2],
+						message[rty[0]].uuid,
+						rty[1],
+						rty[1] / message[rty[0]].speed,
+						message[rty[0]].loc[0],
+						message[rty[0]].loc[1]
+					]));
+					console.log(
+						JSON.stringify([
+							buses[qwe[1]], 
+							names_buspath[qwe[1]][qwe[0]], 
+							qwe[2], 
+							message[rty[0]].uuid, 
+							rty[1],
+							rty[1] / message[rty[0]].speed, 
+							message[rty[0]].loc[0], 
+							message[rty[0]].loc[1]
+						])
+					);
+				} else {
+					ws.send(JSON.stringify([buses[qwe[1]], names_buspath[qwe[1]][qwe[0]], qwe[2],
+						['Bus not found!']
+					]));
+					console.log(
+						JSON.stringify([buses[qwe[1]], names_buspath[qwe[1]][qwe[0]], qwe[2],
+							['Bus not found!']
+						])
+					);
+				}
+
+
+			}, 3000);
+
+
+			//var mybusstop = findbusstop( busorstop, data);
+			// console.log( mybusstop);
+			//var mybusdis = findbus( locs_buspath[ mybusstop[1]], busorstop, mybusstop[0]);
+			// var client = [ buses[ mybusstop[1]], names_buspath[ mybusstop[1]][ mybusstop[0]], message[ mybusdis[0]].uuid, mybusdis[1]];
+			//ws.send( JSON.stringify( client));
+			// console.log( mybusstop, mybusdis);
+		}
+	});
+
+	ws.on('close', function () {
+		if (usertype == 1) message[iid].removed = 1;
+		console.log('Client disconnected');
+		clearInterval(watchID);
+	});
+
 });
+			
+			
+
 
 	function mag(a, b) {
 	   var R = 6371;
