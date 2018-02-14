@@ -343,7 +343,7 @@ function findbusstop( busorstop, loc){
 				//index , least value from location
 				if( near[1] < least[1]){
 					least[0] = near[0];
-					least[1] = near[1];
+					least[1] = near[1];  
 					curj = j;
 					desj = w;
 					//console.log( 'aaa:', near);
