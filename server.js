@@ -214,7 +214,7 @@ wss.on('connection', function (ws) {
 				}
 
 
-			}, 2500);  
+			}, 2000);  
  
 
 			//var mybusstop = findbusstop( busorstop, data);
