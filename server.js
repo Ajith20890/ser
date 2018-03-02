@@ -18,7 +18,7 @@ var message = [];
 
 // var id = -1;
 
-var buses = [ "77", "45D", "210P", "15E", "210E", "6thfloor coordinates"];
+var buses = [ "77", "45D", "210P", "15E", "210E", "6thfloor coordinates","RajHouse"];
 
 var locs_buspath = [
 	[[12.9601640,77.5771710],[12.9604050,77.5679080],[12.9603320,77.5635760],[12.9603740,77.5591400],[12.9627700,77.5602270],
@@ -56,9 +56,9 @@ var locs_buspath = [
 				[[12.955076,77.574413],[12.95519,77.574273],[12.954974,77.574129],[12.955169,77.574147],[12.955311,77.574195],
 				 [12.955265,77.574277]]
 				
-			/* 	[[13.003777,77.556717],[13.003806,77.556555],[13.003844,77.55639],[13.003732,77.556349],
+				[[13.003777,77.556717],[13.003806,77.556555],[13.003844,77.55639],[13.003732,77.556349],
 				[13.003354,77.556312],[13.003202,77.556259],[13.002974,77.556203],[13.002958,77.556203],[13.002765,77.55618],
-				[13.002598,77.556118],[13.002509,77.556097]] */
+				[13.002598,77.556118],[13.002509,77.556097]]
 				
 				];
 
@@ -90,11 +90,10 @@ var names_buspath = [
 				 'Hunase Mara','Banashankari','Kadirenahalli Cross','Prarthana school','Gowdana Palya','Chikkallasandra Aralimara','Uttarahalli',
 				 'Police Station Subramanyapura','post office Subramanyapura','KEB Subramanyapura','Yadalamma Nagara','Vasanthapura Temple','Vasanthapura'],
 				
-				/* ['Vaishnavi Stores','Benaka Jewel','8th main road sun rise',
-				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi'] */
+				['620MCA Library','621MCA Lab','604computer ise lab','6052nd class','6063rd class','611Computer Lab'],
 				
-				
-				['620MCA Library','621MCA Lab','604computer ise lab','6052nd class','6063rd class','611Computer Lab']
+				['Vaishnavi Stores','Benaka Jewel','8th main road sun rise',
+				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi']
 			]; 
 
 wss.on('connection', function (ws) {
