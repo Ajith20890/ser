@@ -53,8 +53,11 @@ var locs_buspath = [
 				 [12.8963710,77.5484260],[12.8962310,77.5526260],[12.8949320,77.5528350]],
 				 
 		 
-				[[12.955076,77.574413],[12.95519,77.574273],[12.954974,77.574129],[12.955169,77.574147],[12.955311,77.574195],
-				 [12.955265,77.574277]],
+				/* [[12.955076,77.574413],[12.95519,77.574273],[12.954974,77.574129],[12.955169,77.574147],[12.955311,77.574195],
+				 [12.955265,77.574277]], */
+				 
+				 [[12.954950,77.574287],[12.955346,77.574287],[12.955071,77.574225],[12.95515,77.574225],[12.955227,77.574206]],
+				/*  [[12.955346,77.574287],[12.955071,77.574369],[12.95523,77.574251],[12.955227,77.574206]], */
 				
 				[[13.003777,77.556717],[13.003806,77.556555],[13.003844,77.55639],[13.003732,77.556349],
 				[13.003354,77.556312],[13.003202,77.556259],[13.002974,77.556203],[13.002958,77.556203],[13.002765,77.55618],
@@ -90,7 +93,7 @@ var names_buspath = [
 				 'Hunase Mara','Banashankari','Kadirenahalli Cross','Prarthana school','Gowdana Palya','Chikkallasandra Aralimara','Uttarahalli',
 				 'Police Station Subramanyapura','post office Subramanyapura','KEB Subramanyapura','Yadalamma Nagara','Vasanthapura Temple','Vasanthapura'],
 				
-				['620MCA Library','621MCA Lab','604computer ise lab','6052nd class','6063rd class','611Computer Lab'],
+				['MCA class1','604computer ise lab','6051st class','6063rd class','611Computer Lab'],
 				
 				['Vaishnavi Stores','Benaka Jewel','8th main road sun rise',
 				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi']
