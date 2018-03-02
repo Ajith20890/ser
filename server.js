@@ -88,7 +88,7 @@ var names_buspath = [
 				 'Hunase Mara','Banashankari','Kadirenahalli Cross','Prarthana school','Gowdana Palya','Chikkallasandra Aralimara','Uttarahalli',
 				 'Police Station Subramanyapura','post office Subramanyapura','KEB Subramanyapura','Yadalamma Nagara','Vasanthapura Temple','Vasanthapura'],
 				
-				['MCA class1','604computer ise lab','6051st class','6063rd class','611Computer Lab'],
+				['611Computer Lab','6063rd class','6051st class','604computer ise lab','MCA class1'],
 				
 				['Vaishnavi Stores','Benaka Jewel','8th main road sun rise',
 				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi']
