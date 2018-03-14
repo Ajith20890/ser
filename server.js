@@ -18,6 +18,7 @@ var message = [];
 
 // var id = -1;
 
+
 var buses = [ "77", "45D", "210P", "15E", "210E", "6thfloor coordinates","RajHouse"];
 
 var locs_buspath = [
