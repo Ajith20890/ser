@@ -19,7 +19,7 @@ var message = [];
 // var id = -1;
 
 
-var buses = [ "77", "45D", "210P", "15E", "210E", "6thfloor coordinates","RajHouse"];
+var buses = [ "77", "45D", "210P", "15E", "210E", "6thfloor coordinates","RajHouse","collegefront"];
 
 var locs_buspath = [
 	[[12.9601640,77.5771710],[12.9604050,77.5679080],[12.9603320,77.5635760],[12.9603740,77.5591400],[12.9627700,77.5602270],
@@ -57,7 +57,9 @@ var locs_buspath = [
 			
 				[[13.003777,77.556717],[13.003806,77.556555],[13.003844,77.55639],[13.003732,77.556349],
 				[13.003354,77.556312],[13.003202,77.556259],[13.002974,77.556203],[13.002958,77.556203],[13.002765,77.55618],
-				[13.002598,77.556118],[13.002509,77.556097]]
+				[13.002598,77.556118],[13.002509,77.556097]],
+				
+				[[12.954693,77.573850],[12.954629,77.573976],[12.954556,77.574131],[12.954587,77.574285],[12.954574,77.574445],[12.954568,77.574523],[12.954571,77.574737]]
 				
 				];
 
@@ -92,7 +94,9 @@ var names_buspath = [
 				['611Computer Lab','6063rd class','6051st class','604computer ise lab','MCA class1'],
 				
 				['Vaishnavi Stores','Benaka Jewel','8th main road sun rise',
-				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi']
+				'water tank','2067','2066','1975','1976','2060','Guru kripa','Ravi'],
+				
+				['Bit entrance','Bit ATM','Physiotherapy college','Tripthi Hotel','Tripthi Hotel end','Manjunatha stationary','Vokaliga dental college']
 			]; 
 
 wss.on('connection', function (ws) {
